@@ -1,3 +1,7 @@
+#### READ.ME File Description
+
+***
+
 **Usage:** Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
 
 **Info** The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
