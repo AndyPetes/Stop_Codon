@@ -1,6 +1,6 @@
 **Usage:** Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
 
-The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
+**Info** The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
 newline The sequence file should contain a codon-aware alignment in fasta format and must include the 
 stop codon as the last position of the alignment. Sequences that include a gap or a codon other than
 a stop codon (i.e. sequences for which the stop codon is not positionally homologous with the last 
