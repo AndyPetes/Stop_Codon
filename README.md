@@ -1,11 +1,11 @@
-# Selection shapes synonymous stop codon use in mammals
+## Selection shapes synonymous stop codon use in mammals
 
 Phylogenetic models of the evolution of protein-coding sequences can provide insights into the selection pressures that have shaped them. In the application of these models synonymous nucleotide substitutions, which do not alter the encoded amino acid, are often assumed to have limited functional consequences and used as a proxy for the neutral rate of evolution. The ratio of nonsynonymous to synonymous substitution rates is then used to categorize the selective regime that applies to the protein (e.g. purifying selection, neutral evolution, diversifying selection). Here, we extend these models to explore the extent of purifying selection acting on substitutions between synonymous stop codons. Our results suggest that the preference for UGA stop codons
 in many multicellular eukaryotes is selective rather than mutational in origin.
 
 ***
 
-## Getting Started
+### Getting Started
 
 **Command:** Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
 
@@ -44,7 +44,7 @@ install.packaages("expm")
 
 ***
 
-## Running the tests
+### Running the tests
 
 The code is ran using the following command:
 
@@ -87,7 +87,7 @@ write(c(m1.out$value,m1.out$par,diff,m1.out$convergence),out_file,ncol=10)
 ```
 ***
 
-## Authors
+### Authors
 
 * **Cathal Seoighe** - *Initial work* - [StopCodon](https://github.com/CathalSeoighe/StopCodon)
 * **Stephen J. Kiniry**
@@ -96,4 +96,4 @@ write(c(m1.out$value,m1.out$par,diff,m1.out$convergence),out_file,ncol=10)
 
 ***
 
-## Acknowledgments
+### Acknowledgments
