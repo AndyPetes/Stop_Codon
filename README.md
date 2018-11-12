@@ -7,6 +7,7 @@ One Paragraph of project description goes here
 ## Getting Started
 
 **Command:** Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
+
 **Info:** The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
 The sequence file should contain a codon-aware alignment in fasta format and must include the 
 stop codon as the last position of the alignment. Sequences that include a gap or a codon other than
