@@ -7,15 +7,13 @@ in many multicellular eukaryotes is selective rather than mutational in origin.
 
 ### Getting Started
 
-**Command:** Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
+The R script (StopCodon/stopcodon.rscript) requires as input, a sequence alignment file in FASTA format and a phylogenetic tree file expaining the relatedness of the alignment.
 
-**Info:** The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
+The tree file should include branch lengths. Note that relative branch lengths are treated as fixed.
 The sequence file should contain a codon-aware alignment in fasta format and must include the 
 stop codon as the last position of the alignment. Sequences that include a gap or a codon other than
 a stop codon (i.e. sequences for which the stop codon is not positionally homologous with the last 
 position in the alignment) are excluded.
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ***
 
@@ -46,9 +44,11 @@ install.packaages("expm")
 
 ### Running the tests
 
-The code is ran using the following command:
+The code is ran in the Linux command line using the following command:
 
-**Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>**
+```
+Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
+```
 
 Where "seqfile.fasta" is a codon-aware alignment of the sequence data and the "treefile.ph" is a maximum likelihood estimate of the tree given the codon-aware alignment.
 
@@ -57,12 +57,12 @@ Where "seqfile.fasta" is a codon-aware alignment of the sequence data and the "t
 
 ### Break down into end to end tests
 
-Ensure all data is in the required directory
+Ensure all data is in the required directory. Then enter this directory using the "cd" command in the linux command line followed by the path to the data directory.
 
 ```
 cd /home/YourDataDirectory
 ```
-Run the R script
+Run the R script using the Rscript command.
 
 ```
 Rscript stopcodon.rscript <treefile.ph> <seqfile.fasta>
