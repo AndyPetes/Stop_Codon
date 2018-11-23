@@ -211,6 +211,10 @@ ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + ge
 ### Description
 [Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2A.png) and [Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2B.png)
 
+Estimates are from a logistic regression model, which included
+the number of taxa for which the stop codon was positionally homologous with the
+end of the alignment as a covariate
+
 
 ### Code
 
