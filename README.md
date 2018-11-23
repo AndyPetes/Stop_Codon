@@ -202,6 +202,7 @@ colnames(df) = c("proportion","stop codon")
 ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + geom_histogram( aes(y = ..density..), position = 'identity', binwidth=0.005) + scale_fill_manual(values=c("black", "orange", "gold","chocolate4")) + xlim(0.25,0.85)
 }
 ```
+***
 
 ### Plot
 ![Fig 1](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.1.png)
@@ -215,6 +216,7 @@ Estimates are from a logistic regression model, which included
 the number of taxa for which the stop codon was positionally homologous with the
 end of the alignment as a covariate
 
+***
 
 ### Code
 
@@ -262,10 +264,34 @@ ggplot(predictdata,aes(x=omega,y=predictProb)) + geom_ribbon(alpha=0.5,aes(ymin=
 }
 ```
 
+***
+
 ### Plot
 ![Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2A.png)
 
 ![Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2B.png)
+
+***
+
+### Description
+Results of simulations based on 1,000 orthologue alignments, randomly sampled from OrthoMaM. Sequences were simulated over the phylogenetic trees corresponding to the sequence alignments, under a stop-extended codon model based on MG with the F1x4 model of codon frequencies. Simulated values of φ were sampled uniformly between 0 and 3. Branch lengths of the phylogenies were re-estimated from the simulated alignments, under the MG F1x4 model, using codonPhyml. The stop-extended codon model was then fitted to the simulated alignments. The figure shows the maximum likelihood estimates, plotted against simulated values of φ . The identity line is shown in red
+
+***
+
+### Code
+```
+#figure_sim_var: check bias in the estimate of phi
+figure_sim_var = function(file) {
+  sim = read.table(file,h=T)
+  ggplot(sim,aes(Phi_sim,Phi)) + theme_bw(base_size = 20) + geom_point(alpha=0.5) + geom_abline(slope=1,intercept=0,col="red") + xlab(expression("Simulated"~phi)) + ylab(expression("Estimated"~phi))
+}
+```
+***
+
+### Plot
+![Fig S1](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/S1.png)
+
+
 
 ### Authors
 
