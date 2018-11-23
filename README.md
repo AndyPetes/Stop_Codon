@@ -209,7 +209,7 @@ ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + ge
 ***
 
 ### Description
-[Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2a.png) and [Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2b.png)
+[Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2A.png) and [Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2B.png)
 
 
 ### Code
@@ -259,8 +259,10 @@ ggplot(predictdata,aes(x=omega,y=predictProb)) + geom_ribbon(alpha=0.5,aes(ymin=
 ```
 
 ### Plot
-![Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2a.png)
-![Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2b.png)
+![Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2A.png)
+
+![Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2B.png)
+
 ### Authors
 
 * **Cathal Seoighe**
