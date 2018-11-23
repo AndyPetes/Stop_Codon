@@ -196,7 +196,7 @@ ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + ge
 ```
 
 ### Plot
-![alt text](https://github.com/cseoighe/StopEvol/blob/master/Sim1.png)
+![Fig 1](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.1.png)
 
 ***
 ### Authors
