@@ -182,6 +182,7 @@ All plots require:
 
 ### Description
 [Fig 1](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.1.png)
+
 To estimate the proportion of stop codons evolving under the influence of purifying selection, we fitted our stop-extended codon model to the codon-aware alignments of mammalian orthologues, obtained from the OrthoMaM database, using a mixture distribution for the φ parameter. The mixture distribution consisted of two point masses, one with a variable φ < 1, corresponding to stop codons evolving under purifying selection and another with φ fixed at 1, corresponding to neutral evolution – i.e. substitutions between stop codons occurring at a rate consistent with the rate of synonymous substitutions in the coding region. We then used maximum likelihood to estimate the two free parameters of this mixture model (the φ parameter for the constrained stop codons and the mixture weight parameter).
 
 ***
@@ -206,6 +207,60 @@ ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + ge
 ![Fig 1](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.1.png)
 
 ***
+
+### Description
+[Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2a.png) and [Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2b.png)
+
+
+### Code
+
+```
+# Figure 2a: Plot probability of conservation as a function of half-life, with stop codon interaction
+figure2a = function() {
+  txtsize = 20
+  summary(lm(hl~cons+genegc+cdslen+omega+utrlen+cons:humstop + taxcount,data=t))
+  gcglm = glm(cons ~ hl * humstop + taxcount ,family="binomial", data=t)
+  newdata = data.frame( hl = rep(seq(from=0,to = 24, length.out=100),3),humstop = c(rep('UAG',100),rep('UGA',100),rep('UAA',100)),taxcount=rep(median(t$taxcount,na.rm=T),300))
+  predictdata = cbind(newdata,predict(gcglm,newdata=newdata,se=T))
+  predictdata = within(predictdata, { predictProb = plogis(fit)
+  LL = plogis(fit-1.96*se.fit)
+  UL = plogis(fit + 1.96*se.fit)
+  })
+  ggplot(predictdata,aes(x=hl,y=predictProb)) + 
+    geom_ribbon(aes(ymin=LL,ymax=UL,fill=factor(humstop)),alpha=.5) + 
+    geom_line(data=predictdata[predictdata$humstop=='UAA',],color="black")+
+    geom_line(data=predictdata[predictdata$humstop=='UAG',],color="black")+
+    geom_line(data=predictdata[predictdata$humstop=='UGA',],color="black")+
+    xlab("mRNA half-life") + ylab("Probability of conservation") + 
+    theme(text=element_text(size=txtsize), axis.text.x = element_text(size=txtsize),axis.text.y = element_text(size=txtsize), panel.background = element_rect(fill= "white", colour="black"), panel.grid.minor = element_blank(), panel.grid.major = element_line(colour="grey88"))+
+    guides(fill=guide_legend(title="Stop codon")) + ylim(0,0.45) +
+    scale_fill_manual(values=c("darkorange","yellow","brown"))
+  }
+```
+```
+#Figure 2b: Probability of conservation as a function of omega
+figure2b = function() {
+txtsize = 20
+omegaglm = glm(conserved ~ omega * humstop + taxcount,family="binomial", data=t)
+newdata = data.frame( omega = rep(seq(from=0,to = 0.8, length.out=100),3),humstop = c(rep('UAG',100),rep('UGA',100),rep('UAA',100)),taxcount=rep(median(t$taxcount,na.rm=T),300))
+predictdata = cbind(newdata,predict(omegaglm,newdata=newdata,se=T))
+predictdata = within(predictdata, { predictProb = plogis(fit)
+LL = plogis(fit-1.96*se.fit)
+UL = plogis(fit + 1.96*se.fit)
+})
+ggplot(predictdata,aes(x=omega,y=predictProb)) + geom_ribbon(alpha=0.5,aes(ymin=LL,ymax=UL,fill=factor(humstop))) + 
+  geom_line(data=predictdata[predictdata$humstop=='UAA',],color="black")+
+  geom_line(data=predictdata[predictdata$humstop=='UAG',],color="black")+
+  geom_line(data=predictdata[predictdata$humstop=='UGA',],color="black")+
+  xlab("omega") + ylab("Probability of conservation") + theme(text=element_text(size=txtsize), axis.text.x = element_text(size=txtsize),axis.text.y = element_text(size=txtsize),panel.background = element_rect(fill= "white", colour="black"), panel.grid.minor = element_blank(), panel.grid.major = element_line(colour="grey88"))+
+  guides(fill=guide_legend(title="Stop codon")) +
+  scale_fill_manual(values=c("darkorange","yellow","brown"))
+}
+```
+
+### Plot
+![Fig 2a](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2a.png)
+![Fig 2b](https://github.com/cseoighe/StopEvol/blob/AP_test/Figures/Fig.2b.png)
 ### Authors
 
 * **Cathal Seoighe**
