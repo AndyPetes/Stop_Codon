@@ -164,6 +164,41 @@ stop codon.
 <gene_name>.sim.mgf1x4.fastas
 ```
 ***
+
+### Figures
+The following section describes:
+* Installed "R" packages
+* Code used to generate each figure
+* Plot generated
+
+***
+
+### Prerequisites
+All plots require:
+* "R" package "ggplot2" installed 
+
+***
+
+### Code
+```
+figure1 = function() {
+bootstraps = 1000
+Ws = read.table("Bootstraps.weights")
+Phis = read.table("Bootstraps.phis")
+Ws$UAG[Phis$UAG > 0.99] = NA  ##Weight not estimable for phi close to one (which can occur for UAG, due to low proportion under selection)
+Phis$UAG[Ws$UAG < 0.01] = NA  ##Phi not estimable for weight close to zero
+proportion = c(Ws$UGA,Ws$UAG,Ws$UAA,Ws$All)
+stop_codon = c(rep('UGA',bootstraps),rep('UAG',bootstraps),rep('UAA',bootstraps),rep('All',bootstraps))
+df = data.frame(proportion=proportion,stop_codon = stop_codon)
+colnames(df) = c("proportion","stop codon")
+ggplot(df, aes(proportion, fill = `stop codon`)) + theme_bw(base_size = 20) + geom_histogram( aes(y = ..density..), position = 'identity', binwidth=0.005) + scale_fill_manual(values=c("black", "orange", "gold","chocolate4")) + xlim(0.25,0.85)
+}
+```
+
+### Plot
+![alt text](https://github.com/cseoighe/StopEvol/blob/master/Sim1.png)
+
+***
 ### Authors
 
 * **Cathal Seoighe**
